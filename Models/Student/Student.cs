@@ -19,8 +19,11 @@ namespace ASPCore.Models
 
         public string City { get; set; }
 
-
+        [MinLength(7)]
         public string Phone { get; set; }
+
+
+        public string Profile { get; set; }
 
     }
 }
