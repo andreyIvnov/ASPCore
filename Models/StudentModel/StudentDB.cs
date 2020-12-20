@@ -17,7 +17,8 @@ namespace ASPCore.Models.StudentModel
                 Name ="Andrey Ivanov",
                 City = "Ramat Gan",
                 Age = 27,
-                Phone = "05458946"          
+                Phone = "05458946",
+                Profile = "https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
             });
         }
         public void AddStudent(Student student)

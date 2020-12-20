@@ -22,7 +22,7 @@ namespace ASPCore.Models.StudentModel
         [MinLength(7)]
         public string Phone { get; set; }
 
-
+        [DataType(DataType.MultilineText)]
         public string Profile { get; set; }
 
     }

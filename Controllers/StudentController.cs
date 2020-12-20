@@ -45,8 +45,12 @@ namespace ASPCore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
-            _service.AddStudent(student);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _service.AddStudent(student);
+                return RedirectToAction("Index");
+            }
+            return View(student);
         }
 
         // GET: StudentController/Edit/5
@@ -67,22 +71,25 @@ namespace ASPCore.Controllers
         // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            _service.RemoveStudent(id);
+            return RedirectToAction("Index");
         }
 
+        
+        
         // POST: StudentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }
