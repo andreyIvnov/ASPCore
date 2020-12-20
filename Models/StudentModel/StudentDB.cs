@@ -75,7 +75,7 @@ namespace ASPCore.Models.StudentModel
         {
             try
             {
-                Student item = _students.FirstOrDefault(s => s.ID == id);
+                Student item = GetStudent(id);
                 //item.ID = student.ID;
                 item.Name = student.Name;
                 item.Age = student.Age;

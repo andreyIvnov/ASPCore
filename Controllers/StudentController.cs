@@ -56,7 +56,7 @@ namespace ASPCore.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_service.GetStudent(id));
         }
 
         // POST: StudentController/Edit/5
@@ -64,8 +64,12 @@ namespace ASPCore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Student student, int id)
         {
-            _service.UpdateStudent(student, id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _service.UpdateStudent(student, id);
+                return RedirectToAction("Index");
+            }
+            return View(student);
         }
 
         // GET: StudentController/Delete/5
