@@ -11,6 +11,14 @@ namespace ASPCore.Models.StudentModel
         public StudentDB()
         {
             _students = new List<Student>();
+            _students.Add(new Student() 
+            { 
+                ID = 007,
+                Name ="Andrey Ivanov",
+                City = "Ramat Gan",
+                Age = 27,
+                Phone = "05458946"          
+            });
         }
         public void AddStudent(Student student)
         {
@@ -64,7 +72,22 @@ namespace ASPCore.Models.StudentModel
 
         public void UpdateStudent(Student student, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Student item = _students.FirstOrDefault(s => s.ID == id);
+                //item.ID = student.ID;
+                item.Name = student.Name;
+                item.Age = student.Age;
+                item.City = student.City;
+                item.Phone = student.Phone;
+                item.Profile = student.Profile;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }

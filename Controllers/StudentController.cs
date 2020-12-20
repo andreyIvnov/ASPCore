@@ -18,15 +18,22 @@ namespace ASPCore.Controllers
         // GET: StudentController
         public ActionResult Index()
         {
-            return View();
+            return View(_service.GetStudents());
         }
 
+        
+        
+        
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Student student = _service.GetStudent(id);
+            return View(student);
         }
 
+        
+        
+        
         // GET: StudentController/Create
         public ActionResult Create()
         {
@@ -36,16 +43,10 @@ namespace ASPCore.Controllers
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Student student)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _service.AddStudent(student);
+            return RedirectToAction("Index");
         }
 
         // GET: StudentController/Edit/5
@@ -57,16 +58,10 @@ namespace ASPCore.Controllers
         // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Student student, int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _service.UpdateStudent(student, id);
+            return RedirectToAction("Index");
         }
 
         // GET: StudentController/Delete/5
